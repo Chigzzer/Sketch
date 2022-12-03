@@ -1,12 +1,16 @@
 const container = document.querySelector('#container');
+const sketchpadSize = 320;
+
+container.style.width = sketchpadSize + 'px';
+container.style.height = sketchpadSize + 'px';
 
 function createDivs(size){
     for (let i = 0; i < (size*size); i++){
         console.log("Running");
         const div = document.createElement('div');
         div.classList.add('square');
-        div.style.width = (320/size) + 'px';
-        div.style.height = (320/size) + 'px';
+        div.style.width = (sketchpadSize/size) + 'px';
+        div.style.height = (sketchpadSize/size) + 'px';
         container.appendChild(div);
     }
 }
