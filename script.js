@@ -1,18 +1,33 @@
 const container = document.querySelector('#container');
-const sketchpadSize = 320;
 
-container.style.width = sketchpadSize + 'px';
-container.style.height = sketchpadSize + 'px';
+
+// Section that automatically sizes the sketch pad.
+const sketchPadSize = 320;
+container.style.width = sketchPadSize + 'px';
+container.style.height = sketchPadSize + 'px';
+
+createDivs(16);
+let squares = document.querySelectorAll('.square');
+const resetButton = document.querySelector('.reset');
+const sizeSquare = document.querySelector('.drawSize');
+
+
+console.log(squares);
+squares.forEach(element => element.addEventListener('mouseover', draw));
+resetButton.addEventListener('click', reset);
+sizeSquare.addEventListener('click', changeSquareSize);
+
 
 function createDivs(size){
     for (let i = 0; i < (size*size); i++){
-        console.log("Running");
+        console.log(`Running ${size}`);
         const div = document.createElement('div');
         div.classList.add('square');
-        div.style.width = (sketchpadSize/size) + 'px';
-        div.style.height = (sketchpadSize/size) + 'px';
+        div.style.width = (sketchPadSize/size) + 'px';
+        div.style.height = (sketchPadSize/size) + 'px';
         container.appendChild(div);
     }
+    return;
 }
 
 function draw(){
@@ -22,12 +37,17 @@ function draw(){
 
 function reset(){
     console.log('reset ran');
-    divs.forEach(element => element.classList.remove('hovered'));
+    squares.forEach(element => element.classList.remove('hovered'));
 }
 
-createDivs(16);
-const divs = document.querySelectorAll('.square');
-divs.forEach(element => element.addEventListener('mouseover', draw));
+function changeSquareSize(){
+    const newSize = prompt("Number of squares per side>", 16);
+    console.log(newSize);   
+    reset();
+    squares.forEach(element => element.remove());
+    createDivs(newSize);
+    squares = document.querySelectorAll('.square');
+    squares.forEach(element => element.addEventListener('mouseover', draw));
+}
 
-const resetButton = document.querySelector('.reset');
-resetButton.addEventListener('click', reset);
+
