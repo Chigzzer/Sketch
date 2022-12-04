@@ -50,6 +50,7 @@ function normalColour(){
     erasorText.style.visibility = 'hidden';
 
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
+    squares.forEach(element => element.removeEventListener('click', eraseSquare));
     squares.forEach(element => element.addEventListener('mouseover', draw));
     colourDiv.style.visibility = 'visible';
     return;
@@ -63,6 +64,7 @@ function rainbowColour(){
     erasorText.style.visibility = 'hidden';
 
     squares.forEach(element => element.removeEventListener('mouseover', draw));
+    squares.forEach(element => element.removeEventListener('click', eraseSquare));
     squares.forEach(element => element.addEventListener('mouseover', drawRainbow));
     return;
 }
