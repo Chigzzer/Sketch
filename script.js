@@ -33,9 +33,7 @@ function erase(){
     rainbowButton.removeAttribute('style');
     erasor.setAttribute('style', 'background-color: black; color: white');
     normalButton.removeAttribute('style');
-
     erasorText.style.visibility = 'visible';
-
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.addEventListener('click', eraseSquare));
@@ -77,12 +75,10 @@ function drawRainbow(){
     }
     this.style.backgroundColor = rainbowColours[rainbowIndex];
     rainbowIndex++;
-   
     if (rainbowIndex > rainbowColours.length){
         console.log("Resetting rainbow colour");
         rainbowIndex = 0;
     }
-
     return;
 }
 
@@ -118,12 +114,14 @@ function changePadSize(){
 }
 
 function createDivs(size){
+    const border = 1;
     for (let i = 0; i < (size*size); i++){
         console.log(`Running ${size}`);
         const div = document.createElement('div');
         div.classList.add('square');
-        div.style.width = (sketchPadSize/size) + 'px';
-        div.style.height = (sketchPadSize/size) + 'px';
+        div.style.width = ((sketchPadSize/size) - (2 * border)) + 'px';
+        div.style.height = ((sketchPadSize/size) - (2 * border))  + 'px';
+        div.style.border = border + 'px black solid';
         container.appendChild(div);
     }
     return;
@@ -151,7 +149,7 @@ function changeSquareSize(){
     else{
         console.log(newSize);   
         reset();
-        squares.forEach(element => element.removeAttribute('background-color'));
+        container.innerHTML='';
         createDivs(newSize);
         squares = document.querySelectorAll('.square');
         squares.forEach(element => element.addEventListener('mouseover', draw));
