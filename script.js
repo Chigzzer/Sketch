@@ -1,5 +1,6 @@
 const container = document.querySelector('#container');
 let paintColour = 'black';
+const rainbowColours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 let rainbowIndex = 0;
 // Section that automatically sizes the sketch pad.
 let sketchPadSize = 320;
@@ -8,46 +9,64 @@ container.style.height = sketchPadSize + 'px';
 
 createDivs(16);
 let squares = document.querySelectorAll('.square');
-const resetButton = document.querySelector('.reset');
+const resetButton = document.querySelector('#reset');
 const sizeSquare = document.querySelector('.drawSize');
 const padButton = document.querySelector('#padChange');
 const colourChooser = document.querySelectorAll('.colourButton');
-const normalButton = document.querySelector('.normal');
-const rainbowButton = document.querySelector('.rainbow');
+const normalButton = document.querySelector('#normal');
+const rainbowButton = document.querySelector('#rainbow');
+const erasor = document.querySelector('#erasor');
 const colourDiv = document.querySelector('#colours');
 console.log(squares);
 squares.forEach(element => element.addEventListener('mouseover', draw));
+
 resetButton.addEventListener('click', reset);
 sizeSquare.addEventListener('click', changeSquareSize);
 colourChooser.forEach(element => element.addEventListener('click', changeColour));
 padButton.addEventListener('click', changePadSize);
 normalButton.addEventListener('click', normalColour);
 rainbowButton.addEventListener('click', rainbowColour);
+erasor.addEventListener('click', erase);
+
+function erase(){
+    squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
+    squares.forEach(element => element.removeEventListener('mouseover', draw));
+    squares.forEach(element => element.addEventListener('click', eraseSquare));
+}
+
+function eraseSquare(){
+    this.style.backgroundColor = 'white';
+}
 
 function normalColour(){
-    reset();
-    squares.forEach(element => element.addEventListener('mouseover', draw));
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
-    paintColour = 'black';
+    squares.forEach(element => element.addEventListener('mouseover', draw));
     colourDiv.style.visibility = 'visible';
     return;
 }
 
 function rainbowColour(){
-    reset();
+
     colourDiv.style.visibility = 'hidden';
+    squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.addEventListener('mouseover', drawRainbow));
     return;
 }
 
 function drawRainbow(){
-    const rainbowColours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-    if (rainbowIndex > rainbowColours.length){
+    console.log("Draw Rainbow");
+    if (rainbowIndex >= rainbowColours.length){
+        console.log("Resetting rainbow colour");
         rainbowIndex = 0;
     }
-    console.log("Draw Rainbow");
     this.style.backgroundColor = rainbowColours[rainbowIndex];
     rainbowIndex++;
+   
+    if (rainbowIndex > rainbowColours.length){
+        console.log("Resetting rainbow colour");
+        rainbowIndex = 0;
+    }
+
     return;
 }
 
