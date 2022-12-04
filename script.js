@@ -29,6 +29,35 @@ normalButton.addEventListener('click', normalColour);
 rainbowButton.addEventListener('click', rainbowColour);
 erasor.addEventListener('click', erase);
 
+
+const sizeRanger = document.querySelector('#squareRange');  
+sizeRanger.addEventListener('click', changeRange);
+
+function changeRange(){
+    let newSizeRange = sizeRanger.value;
+    let val = '';
+    if (newSizeRange == 0){
+         val = 10;
+    }
+    else if (newSizeRange == 1){
+        val = 12;
+    }
+    else if (newSizeRange == 2){
+        val = 16;
+    }
+    else if (newSizeRange == 3){
+        val = 20;
+    }
+    else if (newSizeRange == 4){
+        val = 22;
+    }
+    else if (newSizeRange == 5){
+        val = 24;
+    }
+    console.log(val)
+    document.getElementById('gridSize').innerText = `${val} by ${val}`;
+}
+
 function erase(){
     rainbowButton.removeAttribute('style');
     erasor.setAttribute('style', 'background-color: black; color: white');
@@ -143,7 +172,36 @@ function reset(){
 }
 
 function changeSquareSize(){
-    const newSize = prompt("Number of squares per side", 16);
+    let newSize = 16;
+    let newSizeRange = sizeRanger.value;
+    console.log(`value: ${newSizeRange}`)
+    if (document.querySelector('#newSizeText').value ==''){
+        console.log('running range');
+        if (newSizeRange == 0){
+            newSize = 10;
+        }
+        else if (newSizeRange == 1){
+            newSize = 12;
+        }
+        else if (newSizeRange == 2){
+            newSize = 16;
+        }
+        else if (newSizeRange == 3){
+            newSize = 20;
+        }
+        else if (newSizeRange == 4){
+            newSize = 22;
+        }
+        else if (newSizeRange == 5){
+            newSize = 24;
+        }
+    }
+    else{
+        console.log('running text');
+        newSize = parseInt(document.querySelector('#newSizeText').value);
+    }
+
+    console.log(newSize);
     if (newSize > 100 || isNaN(newSize)){
         alert("Please select a number 1 and 100");
         return;
