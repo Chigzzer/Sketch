@@ -17,6 +17,7 @@ const padButton = document.querySelector('#padChange');
 const colourChooser = document.querySelectorAll('.colourButton');
 const normalButton = document.querySelector('#normal');
 const rainbowButton = document.querySelector('#rainbow');
+const opacityButton = document.querySelector('#opacity');
 const erasor = document.querySelector('#erasor');
 const colourDiv = document.querySelector('#colours');
 const erasorText = document.querySelector('#erasorText');
@@ -29,6 +30,7 @@ colourChooser.forEach(element => element.addEventListener('click', changeColour)
 padButton.addEventListener('click', changePadSize);
 normalButton.addEventListener('click', normalColour);
 rainbowButton.addEventListener('click', rainbowColour);
+opacityButton.addEventListener('click', opacityColour);
 erasor.addEventListener('click', erase);
 
 
@@ -38,8 +40,26 @@ sizeRanger.addEventListener('click', changeRange);
 
 squares.forEach(element => element.addEventListener('mouseover', draw));
 
-function changeRange(){
+function opacityColour(){
+    rainbowButton.removeAttribute('style');
+    opacityButton.setAttribute('style', 'background-color: black; color: white');
+    normalButton.removeAttribute('style');
+    erasor.removeAttribute('style');
 
+    squares.forEach(element => element.removeEventListener('mouseover', draw));
+    squares.forEach(element => element.removeEventListener('mouseover',drawRainbow));
+    squares.forEach(element => element.removeEventListener('click',erase));
+    squares.forEach(element => element.addEventListener('mouseover',opacityDraw));
+}
+
+function opacityDraw(){
+    this.style.opacity = +this.style.opacity + 0.1;
+    this.style.backgroundColor = paintColour;
+
+}
+
+
+function changeRange(){
     let newSizeRange = sizeRanger.value;
     let val = '';
     if (newSizeRange == 0){
@@ -80,6 +100,7 @@ function eraseSquare(){
 
 function normalColour(){
     erasor.removeAttribute('style');
+    opacityButton.removeAttribute('style');
     normalButton.setAttribute('style', 'background-color: black; color: white');
     rainbowButton.removeAttribute('style');
     erasorText.style.visibility = 'hidden';
@@ -93,6 +114,7 @@ function normalColour(){
 
 function rainbowColour(){
     erasor.removeAttribute('style');
+    opacityButton.removeAttribute('style');
     rainbowButton.setAttribute('style', 'background-color: black; color: white');
     normalButton.removeAttribute('style');
     colourDiv.style.visibility = 'hidden';
