@@ -8,31 +8,38 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-   
-   <div class="buttons">
-    <button class="colourOption" id="normal" style="background-color: black; color: white">Colours</button> 
-    <button class="colourOption" id="rainbow">Rainbow</button> 
-    <button id="reset">Reset</button>
-    <button id="erasor">Erasor</button> 
-    <button class="drawSize">Change size of square</button> 
-    <label for="padSize">Change pad size</label>
-    <select id="padSize" name="padSize" class="padSize">
-        <option value="small">Small</option>
-        <option value="medium" selected>Medium</option>
-        <option value="large">Large</option>
-    </select>
-    <button id="padChange">Change Pad Size</button>
-   </div>
-   <div id="colours">
-    <button class="colourButton" value="black" id="black" style="background-color: black; color: black">Black</button> 
-    <button class="colourButton" value="red" id="red">Red</button> 
-    <button class="colourButton" value="green" id="green">Green</button> 
-    <button class="colourButton" value="blue" id="blue">Blue</button> 
-    <button class="colourButton" value="purple" id="purple">Purple</button> 
-    <button class="colourButton" value="yellow" id="yellow">Yellow</button> 
-    <button class="colourButton" value="pink" id="pink">Pink</button> 
-   </div>
-   <div id="container"></div>
+    <div class="Title">Digital Etch A Sketch</div>
+    <div class="mainBody">
+        <div class="buttons">
+            <button class="colourOption" id="normal" style="background-color: black; color: white">Colours</button> 
+            <button class="colourOption" id="rainbow">Rainbow</button> 
+            <button id="reset">Reset</button>
+            <button id="erasor">Erasor</button> 
+            <button class="drawSize">Change size of square</button>
+            <div class="padSizeWrapper"> 
+                <label for="padSize">Change pad size</label>
+                <select id="padSize" name="padSize" class="padSize">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <button id="padChange">Change Pad Size</button>
+
+        </div>
+        <div class="wrapper">
+            <div id="colours">
+                <button class="colourButton" value="black" id="black" style="background-color: black; color: black">Black</button> 
+                <button class="colourButton" value="red" id="red">Red</button> 
+                <button class="colourButton" value="green" id="green">Green</button> 
+                <button class="colourButton" value="blue" id="blue">Blue</button> 
+                <button class="colourButton" value="purple" id="purple">Purple</button> 
+                <button class="colourButton" value="yellow" id="yellow">Yellow</button> 
+                <button class="colourButton" value="pink" id="pink">Pink</button> 
+            </div>
+            <div id="container"></div>
+        </div>
+    </div>
     <div class="footer">
         Created by &copy Chiraag <a href="https://github.com/Chigzzer" target="_blank" rel="noreferrer noopener" onclick="window.open(this.href,'_blank');return false;">
             <img class="logo" src="github.png" alt="git hub logo"></a>

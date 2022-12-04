@@ -29,6 +29,10 @@ rainbowButton.addEventListener('click', rainbowColour);
 erasor.addEventListener('click', erase);
 
 function erase(){
+    rainbowButton.removeAttribute('style');
+    erasor.setAttribute('style', 'background-color: black; color: white');
+    normalButton.removeAttribute('style');
+
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.addEventListener('click', eraseSquare));
@@ -39,6 +43,7 @@ function eraseSquare(){
 }
 
 function normalColour(){
+    erasor.removeAttribute('style');
     normalButton.setAttribute('style', 'background-color: black; color: white');
     rainbowButton.removeAttribute('style');
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
@@ -48,6 +53,7 @@ function normalColour(){
 }
 
 function rainbowColour(){
+    erasor.removeAttribute('style');
     rainbowButton.setAttribute('style', 'background-color: black; color: white');
     normalButton.removeAttribute('style');
     colourDiv.style.visibility = 'hidden';

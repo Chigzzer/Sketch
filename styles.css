@@ -37,3 +37,27 @@ body{
 .footer{
     justify-self: flex-end;
 }
+
+.mainBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.padSizeWrapper{
+    display: flex;
+    font-size: 12px;
+}
