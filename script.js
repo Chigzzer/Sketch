@@ -1,50 +1,102 @@
+// Setting constants for html queries
 const container = document.querySelector('#container');
-let paintColour = 'black';
-const rainbowColours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-let rainbowIndex = 0;
-// Section that automatically sizes the sketch pad.
-let sketchPadSize = 440;
-container.style.width = sketchPadSize + 'px';
-container.style.height = sketchPadSize + 'px';
-container.style.width = sketchPadSize + 'px';
-//container.style.height = sketchPadSize + 'px';
-
-createDivs(16);
-let squares = document.querySelectorAll('.square');
 const resetButton = document.querySelector('#reset');
 const sizeSquare = document.querySelector('.drawSize');
 const padButton = document.querySelector('#padChange');
-const colourChooser = document.querySelectorAll('.colourButton');
+const colorChooser = document.querySelectorAll('.colorButton');
 const normalButton = document.querySelector('#normal');
 const rainbowButton = document.querySelector('#rainbow');
 const opacityButton = document.querySelector('#opacity');
 const erasor = document.querySelector('#erasor');
-const colourDiv = document.querySelector('#colours');
+const colorDiv = document.querySelector('#colors');
 const erasorText = document.querySelector('#erasorText');
-console.log(squares);
+const sizeRanger = document.querySelector('#squareRange'); 
 
+const rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+let paintColor = 'black';
+let rainbowIndex = 0;
+let sketchPadSize = 440;
 
+// Automatically sizing the container
+container.style.width = sketchPadSize + 'px';
+container.style.height = sketchPadSize + 'px';
+
+// Creating the initial divisions 
+createDivs(16);
+let squares = document.querySelectorAll('.square');
+
+// Creating the initial event listeners for the buttons
 resetButton.addEventListener('click', reset);
 sizeSquare.addEventListener('click', changeSquareSize);
-colourChooser.forEach(element => element.addEventListener('click', changeColour));
 padButton.addEventListener('click', changePadSize);
-normalButton.addEventListener('click', normalColour);
-rainbowButton.addEventListener('click', rainbowColour);
-opacityButton.addEventListener('click', opacityColour);
+normalButton.addEventListener('click', normalColor);
+rainbowButton.addEventListener('click', rainbowColor);
+opacityButton.addEventListener('click', opacityColor);
 erasor.addEventListener('click', erase);
-
-
-const sizeRanger = document.querySelector('#squareRange');  
 sizeRanger.addEventListener('click', changeRange);
-
-
+colorChooser.forEach(element => element.addEventListener('click', changeColor));
 squares.forEach(element => element.addEventListener('mouseover', draw));
 
-function opacityColour(){
+// Functions for each part
+// Function that fills the the selected square with the chosen color onto the grid
+function normalColor(){
+    erasor.removeAttribute('style');
+    opacityButton.removeAttribute('style');
+    normalButton.setAttribute('style', 'background-color: black; color: white');
+    rainbowButton.removeAttribute('style');
+    erasorText.style.visibility = 'hidden';
+    colorDiv.style.visibility = 'visible';
+
+    squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
+    squares.forEach(element => element.removeEventListener('mouseover', opacityDraw));
+    squares.forEach(element => element.removeEventListener('click', eraseSquare));
+    squares.forEach(element => element.addEventListener('mouseover', draw));
+    return;
+}
+
+function draw(){
+    console.log("Drawing");
+    this.style.opacity = 1;
+    this.style.backgroundColor = paintColor;
+    return;
+}
+
+// Rainbow mode, where each color square alters with the color of the rainbow
+function rainbowColor(){
+    erasor.removeAttribute('style');
+    opacityButton.removeAttribute('style');
+    rainbowButton.setAttribute('style', 'background-color: black; color: white');
+    normalButton.removeAttribute('style');
+    colorDiv.style.visibility = 'hidden';
+    erasorText.style.visibility = 'hidden';
+
+    squares.forEach(element => element.removeEventListener('mouseover', draw));
+    squares.forEach(element => element.removeEventListener('mouseover', opacityDraw));
+    squares.forEach(element => element.removeEventListener('click', eraseSquare));
+    squares.forEach(element => element.addEventListener('mouseover', drawRainbow));
+    return;
+}
+
+function drawRainbow(){
+    console.log("Draw Rainbow");
+    if (rainbowIndex >= rainbowColors.length){
+        console.log("Resetting rainbow color");
+        rainbowIndex = 0;
+    }
+    this.style.opacity = 1;
+    this.style.backgroundColor = rainbowColors[rainbowIndex];
+    rainbowIndex++;
+    return;
+}
+
+// Code for the opacity mode, where each mouseover darkens the square by 10%
+function opacityColor(){
+    console.log("Running opacity mode");
     rainbowButton.removeAttribute('style');
     opacityButton.setAttribute('style', 'background-color: black; color: white');
     normalButton.removeAttribute('style');
     erasor.removeAttribute('style');
+    colorDiv.style.visibility = 'visible';
 
     squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.removeEventListener('mouseover',drawRainbow));
@@ -53,12 +105,30 @@ function opacityColour(){
 }
 
 function opacityDraw(){
-    this.style.opacity = +this.style.opacity + 0.1;
-    this.style.backgroundColor = paintColour;
-
+    if (this.style.opacity == 1){
+        this.style.opacity = 0;
+    }
+        this.style.opacity = +this.style.opacity + 0.1;
+    this.style.backgroundColor = paintColor;
 }
 
+// Function for the erase section. Click on each square to erase the color from it.
+function erase(){
+    rainbowButton.removeAttribute('style');
+    erasor.setAttribute('style', 'background-color: black; color: white');
+    normalButton.removeAttribute('style');
+    erasorText.style.visibility = 'visible';
+    squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
+    squares.forEach(element => element.removeEventListener('mouseover', draw));
+    squares.forEach(element => element.removeEventListener('mouseover', opacityDraw));
+    squares.forEach(element => element.addEventListener('click', eraseSquare));
+}
 
+function eraseSquare(){
+    this.style.backgroundColor = 'white';
+}
+
+// Code to read the range slider and change pad size
 function changeRange(){
     let newSizeRange = sizeRanger.value;
     let val = '';
@@ -80,73 +150,7 @@ function changeRange(){
     else if (newSizeRange == 5){
         val = 24;
     }
-    console.log(val)
     document.getElementById('gridSize').innerText = `${val} by ${val}`;
-}
-
-function erase(){
-    rainbowButton.removeAttribute('style');
-    erasor.setAttribute('style', 'background-color: black; color: white');
-    normalButton.removeAttribute('style');
-    erasorText.style.visibility = 'visible';
-    squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
-    squares.forEach(element => element.removeEventListener('mouseover', draw));
-    squares.forEach(element => element.addEventListener('click', eraseSquare));
-}
-
-function eraseSquare(){
-    this.style.backgroundColor = 'white';
-}
-
-function normalColour(){
-    erasor.removeAttribute('style');
-    opacityButton.removeAttribute('style');
-    normalButton.setAttribute('style', 'background-color: black; color: white');
-    rainbowButton.removeAttribute('style');
-    erasorText.style.visibility = 'hidden';
-
-    squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
-    squares.forEach(element => element.removeEventListener('click', eraseSquare));
-    squares.forEach(element => element.addEventListener('mouseover', draw));
-    colourDiv.style.visibility = 'visible';
-    return;
-}
-
-function rainbowColour(){
-    erasor.removeAttribute('style');
-    opacityButton.removeAttribute('style');
-    rainbowButton.setAttribute('style', 'background-color: black; color: white');
-    normalButton.removeAttribute('style');
-    colourDiv.style.visibility = 'hidden';
-    erasorText.style.visibility = 'hidden';
-
-    squares.forEach(element => element.removeEventListener('mouseover', draw));
-    squares.forEach(element => element.removeEventListener('click', eraseSquare));
-    squares.forEach(element => element.addEventListener('mouseover', drawRainbow));
-    return;
-}
-
-function drawRainbow(){
-    console.log("Draw Rainbow");
-    if (rainbowIndex >= rainbowColours.length){
-        console.log("Resetting rainbow colour");
-        rainbowIndex = 0;
-    }
-    this.style.backgroundColor = rainbowColours[rainbowIndex];
-    rainbowIndex++;
-    if (rainbowIndex > rainbowColours.length){
-        console.log("Resetting rainbow colour");
-        rainbowIndex = 0;
-    }
-    return;
-}
-
-function changeColour(){
-    colourChooser.forEach(element => element.removeAttribute('style'));
-    this.setAttribute('style', `background-color:${this.value}; color: ${this.value}`);
-    paintColour = this.value;
-    console.log(`Selected paint colour of ${this.value}`)
-    return;
 }
 
 function changePadSize(){
@@ -165,7 +169,7 @@ function changePadSize(){
     }
     container.style.width = sketchPadSize + 'px';
     container.style.height = sketchPadSize + 'px';
-    colourDiv.style.width = sketchPadSize + 'px';
+    colorDiv.style.width = sketchPadSize + 'px';
     squares.forEach(element => element.remove());
     createDivs(16);  
     squares = document.querySelectorAll('.square');
@@ -173,6 +177,16 @@ function changePadSize(){
     return;
 }
 
+// Choosing the color to draw on the pad
+function changeColor(){
+    colorChooser.forEach(element => element.removeAttribute('style'));
+    this.setAttribute('style', `background-color:${this.value}; color: ${this.value}`);
+    paintColor = this.value;
+    console.log(`Selected paint color of ${this.value}`)
+    return;
+}
+
+// Function that creates the squares in the container and allows dynamic changing of the number of squares
 function createDivs(size){
     const border = 1;
     for (let i = 0; i < (size*size); i++){
@@ -187,24 +201,7 @@ function createDivs(size){
     return;
 }
 
-function draw(){
-    console.log("Draw runned");
-    this.style.backgroundColor = paintColour;
-    return;
-}
-
-function reset(){
-    console.log('reset ran');
-    colourChooser.forEach(element => element.removeAttribute('style'));
-    squares.forEach(element => element.style.backgroundColor = 'white');
-    container.innerHTML='';
-    createDivs(16);
-    squares = document.querySelectorAll('.square');
-    // squares.forEach(element => element.addEventListener('mouseover', draw));
-    
-    return normalColour(); 
-}
-
+// Reads either the inputted value or value from the slider and produces the grid based on the user input. 
 function changeSquareSize(){
     let newSize = 16;
     let newSizeRange = sizeRanger.value;
@@ -251,5 +248,20 @@ function changeSquareSize(){
         return;
     }
 }
+
+// Function that clears out all the current drawn items in the container
+function reset(){
+    console.log('reset ran');
+    colorChooser.forEach(element => element.removeAttribute('style'));
+    squares.forEach(element => element.style.backgroundColor = 'white');
+    container.innerHTML='';
+    createDivs(16);
+    squares = document.querySelectorAll('.square');
+    // squares.forEach(element => element.addEventListener('mouseover', draw));
+    
+    return normalColor(); 
+}
+
+
 
 
