@@ -12,12 +12,16 @@ body{
     justify-content: center;
     align-items: center;
     height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px red solid;
 }
 
 #container{
     display: flex;
     flex-wrap: wrap;
     border:0.5px black solid;
+    flex-direction: column;
 }
 
 .square{
@@ -27,4 +31,13 @@ body{
 
 .hovered{
     background-color: black;
+}
+
+.logo{
+
+    border-radius: 80%;
+}
+
+.footer{
+    justify-self: flex-end;
 }
