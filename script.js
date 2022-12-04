@@ -21,7 +21,7 @@ const erasor = document.querySelector('#erasor');
 const colourDiv = document.querySelector('#colours');
 const erasorText = document.querySelector('#erasorText');
 console.log(squares);
-squares.forEach(element => element.addEventListener('mouseover', draw));
+
 
 resetButton.addEventListener('click', reset);
 sizeSquare.addEventListener('click', changeSquareSize);
@@ -34,6 +34,9 @@ erasor.addEventListener('click', erase);
 
 const sizeRanger = document.querySelector('#squareRange');  
 sizeRanger.addEventListener('click', changeRange);
+
+
+squares.forEach(element => element.addEventListener('mouseover', draw));
 
 function changeRange(){
 
@@ -83,6 +86,7 @@ function normalColour(){
 
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.removeEventListener('click', eraseSquare));
+    squares.forEach(element => element.addEventListener('mouseover', draw));
     colourDiv.style.visibility = 'visible';
     return;
 }
@@ -173,7 +177,10 @@ function reset(){
     squares.forEach(element => element.style.backgroundColor = 'white');
     container.innerHTML='';
     createDivs(16);
-    return; 
+    squares = document.querySelectorAll('.square');
+    // squares.forEach(element => element.addEventListener('mouseover', draw));
+    
+    return normalColour(); 
 }
 
 function changeSquareSize(){
