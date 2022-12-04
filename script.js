@@ -3,7 +3,7 @@ let paintColour = 'black';
 const rainbowColours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 let rainbowIndex = 0;
 // Section that automatically sizes the sketch pad.
-let sketchPadSize = 320;
+let sketchPadSize = 440;
 container.style.width = sketchPadSize + 'px';
 container.style.height = sketchPadSize + 'px';
 
@@ -51,7 +51,6 @@ function normalColour(){
 
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.removeEventListener('click', eraseSquare));
-    squares.forEach(element => element.addEventListener('mouseover', draw));
     colourDiv.style.visibility = 'visible';
     return;
 }
@@ -96,18 +95,19 @@ function changePadSize(){
     const padSize = document.getElementById('padSize');
     if (padSize.value == 'small'){
         console.log("Small pad");
-        sketchPadSize = 160;
+        sketchPadSize = 300;
     } 
     else if(padSize.value == 'medium'){
         console.log("Medium pad");
-        sketchPadSize = 320;
+        sketchPadSize = 440;
     }
     else{
         console.log ('Large pad');
-        sketchPadSize = 480;
+        sketchPadSize = 580;
     }
     container.style.width = sketchPadSize + 'px';
     container.style.height = sketchPadSize + 'px';
+    colourDiv.style.width = sketchPadSize + 'px';
     squares.forEach(element => element.remove());
     createDivs(16);  
     squares = document.querySelectorAll('.square');

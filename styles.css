@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif 
 }
 
 html{
@@ -13,21 +14,25 @@ body{
     align-items: center;
     height: 100%;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     border: 1px red solid;
 }
 
 .title{
     font-weight: 900;
     font-size: 48px;
-    font-family:'URW Chancery L', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:URW Chancery L, Tahoma, Geneva, Verdana, sans-serif;
+    border:1px red solid;
+    margin-bottom: auto;
+    margin-top: 10%;
 }
 
 #container{
     display: flex;
     flex-wrap: wrap;
-    border:0.5px black solid;
+    border:1px green solid;
     flex-direction: column;
+    margin: 5px;
 }
 
 .square{
@@ -40,7 +45,7 @@ body{
 }
 
 .footer{
-    justify-self: flex-end;
+    margin-top: auto;
 }
 
 .mainBody{
@@ -53,13 +58,19 @@ body{
 .wrapper{
     display: flex;
     flex-direction: column;
-    flex: 2;
+    border: 1px red solid;
 }
 
 .buttons{
     display: flex;
     flex-direction: column;
-    flex: 1;
+    gap: 5px;
+    width: 30%;
+}
+
+.buttons button{
+    padding: 5px;
+    border-radius: 10%;
 }
 
 .padSizeWrapper{
@@ -70,4 +81,19 @@ body{
 #erasorText{
     visibility: hidden;
     text-align: center;
+}
+
+#colours{
+    width: 440px;
+    display: flex;
+    gap: 2px;
+    justify-content: space-between;
+    border: 1px red solid;
+    margin: 5px;
+
+}
+
+.colourButton{
+    height: 20px;
+    width: auto;
 }
