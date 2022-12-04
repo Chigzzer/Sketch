@@ -27,7 +27,6 @@ body{
 }
 
 
-
 #container{
     display: flex;
     flex-wrap: wrap;
@@ -42,7 +41,6 @@ body{
 }
 
 .logo{
-
     border-radius: 80%;
 }
 
@@ -72,11 +70,15 @@ body{
 .buttons button{
     padding: 5px;
     border-radius: 10%;
+    border: 1px red solid;
 }
 
 .padSizeWrapper{
     display: flex;
-    font-size: 12px;
+    gap: 5px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 
 #erasorText{
@@ -97,4 +99,15 @@ body{
 .colourButton{
     height: 20px;
     width: auto;
+}
+
+.squareSizeWrapper{
+    border: 1px red solid;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#padSize{
+    text-align: center;
 }
