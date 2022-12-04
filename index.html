@@ -10,8 +10,26 @@
 <body>
    
    <div class="buttons">
+    <button class="normal">Normal Colours</button> 
+    <button class="rainbow">Rainbow</button> 
     <button class="reset">Reset</button> 
     <button class="drawSize">Change size of square</button> 
+    <label for="padSize">Change pad size</label>
+    <select id="padSize" name="padSize" class="padSize">
+        <option value="small">Small</option>
+        <option value="medium" selected>Medium</option>
+        <option value="large">Large</option>
+    </select>
+    <button id="padChange">Change Pad Size</button>
+   </div>
+   <div id="colours">
+    <button class="colourButton" value="black" id="black">Black</button> 
+    <button class="colourButton" value="red" id="red">Red</button> 
+    <button class="colourButton" value="green" id="green">Green</button> 
+    <button class="colourButton" value="blue" id="blue">Blue</button> 
+    <button class="colourButton" value="purple" id="purple">Purple</button> 
+    <button class="colourButton" value="yellow" id="yellow">Yellow</button> 
+    <button class="colourButton" value="pink" id="pink">Pink</button> 
    </div>
    <div id="container"></div>
     <div class="footer">
