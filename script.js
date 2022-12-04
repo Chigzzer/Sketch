@@ -39,6 +39,8 @@ function eraseSquare(){
 }
 
 function normalColour(){
+    normalButton.setAttribute('style', 'background-color: black; color: white');
+    rainbowButton.removeAttribute('style');
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.addEventListener('mouseover', draw));
     colourDiv.style.visibility = 'visible';
@@ -46,7 +48,8 @@ function normalColour(){
 }
 
 function rainbowColour(){
-
+    rainbowButton.setAttribute('style', 'background-color: black; color: white');
+    normalButton.removeAttribute('style');
     colourDiv.style.visibility = 'hidden';
     squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.addEventListener('mouseover', drawRainbow));
@@ -71,6 +74,8 @@ function drawRainbow(){
 }
 
 function changeColour(){
+    colourChooser.forEach(element => element.removeAttribute('style'));
+    this.setAttribute('style', `background-color:${this.value}; color: ${this.value}`);
     paintColour = this.value;
     console.log(`Selected paint colour of ${this.value}`)
     return;
@@ -119,6 +124,7 @@ function draw(){
 
 function reset(){
     console.log('reset ran');
+    colourChooser.forEach(element => element.removeAttribute('style'));
     squares.forEach(element => element.style.backgroundColor = 'white');
     return;    
 }
@@ -132,7 +138,7 @@ function changeSquareSize(){
     else{
         console.log(newSize);   
         reset();
-        squares.forEach(element => element.remove());
+        squares.forEach(element => element.removeAttribute('background-color'));
         createDivs(newSize);
         squares = document.querySelectorAll('.square');
         squares.forEach(element => element.addEventListener('mouseover', draw));
