@@ -17,6 +17,7 @@ const normalButton = document.querySelector('#normal');
 const rainbowButton = document.querySelector('#rainbow');
 const erasor = document.querySelector('#erasor');
 const colourDiv = document.querySelector('#colours');
+const erasorText = document.querySelector('#erasorText');
 console.log(squares);
 squares.forEach(element => element.addEventListener('mouseover', draw));
 
@@ -33,6 +34,8 @@ function erase(){
     erasor.setAttribute('style', 'background-color: black; color: white');
     normalButton.removeAttribute('style');
 
+    erasorText.style.visibility = 'visible';
+
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.addEventListener('click', eraseSquare));
@@ -46,6 +49,8 @@ function normalColour(){
     erasor.removeAttribute('style');
     normalButton.setAttribute('style', 'background-color: black; color: white');
     rainbowButton.removeAttribute('style');
+    erasorText.style.visibility = 'hidden';
+
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.addEventListener('mouseover', draw));
     colourDiv.style.visibility = 'visible';
@@ -57,6 +62,8 @@ function rainbowColour(){
     rainbowButton.setAttribute('style', 'background-color: black; color: white');
     normalButton.removeAttribute('style');
     colourDiv.style.visibility = 'hidden';
+    erasorText.style.visibility = 'hidden';
+
     squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.addEventListener('mouseover', drawRainbow));
     return;
@@ -132,7 +139,7 @@ function reset(){
     console.log('reset ran');
     colourChooser.forEach(element => element.removeAttribute('style'));
     squares.forEach(element => element.style.backgroundColor = 'white');
-    return;    
+    return; 
 }
 
 function changeSquareSize(){
