@@ -22,18 +22,20 @@ body{
     font-weight: 900;
     font-size: 48px;
     font-family:URW Chancery L, Tahoma, Geneva, Verdana, sans-serif;
-    border:1px red solid;
     margin-bottom: auto;
     margin-top: 10%;
 }
 
+
+
 #container{
     display: flex;
     flex-wrap: wrap;
-    border:1px green solid;
+    border: 1px black solid;
     flex-direction: column;
-    margin: 5px;
 }
+
+#innerCOntainer
 
 .square{
     background-color: white;   
@@ -58,7 +60,6 @@ body{
 .wrapper{
     display: flex;
     flex-direction: column;
-    border: 1px red solid;
 }
 
 .buttons{

@@ -6,6 +6,8 @@ let rainbowIndex = 0;
 let sketchPadSize = 440;
 container.style.width = sketchPadSize + 'px';
 container.style.height = sketchPadSize + 'px';
+container.style.width = sketchPadSize + 'px';
+//container.style.height = sketchPadSize + 'px';
 
 createDivs(16);
 let squares = document.querySelectorAll('.square');
@@ -34,6 +36,7 @@ const sizeRanger = document.querySelector('#squareRange');
 sizeRanger.addEventListener('click', changeRange);
 
 function changeRange(){
+
     let newSizeRange = sizeRanger.value;
     let val = '';
     if (newSizeRange == 0){
@@ -151,7 +154,7 @@ function createDivs(size){
         const div = document.createElement('div');
         div.classList.add('square');
         div.style.width = ((sketchPadSize/size) - (2 * border)) + 'px';
-        div.style.height = ((sketchPadSize/size) - (2 * border))  + 'px';
+        div.style.height = ((sketchPadSize/size) - (2 * border)) + 'px';
         div.style.border = border + 'px black solid';
         container.appendChild(div);
     }
@@ -168,6 +171,8 @@ function reset(){
     console.log('reset ran');
     colourChooser.forEach(element => element.removeAttribute('style'));
     squares.forEach(element => element.style.backgroundColor = 'white');
+    container.innerHTML='';
+    createDivs(16);
     return; 
 }
 
@@ -213,6 +218,7 @@ function changeSquareSize(){
         createDivs(newSize);
         squares = document.querySelectorAll('.square');
         squares.forEach(element => element.addEventListener('mouseover', draw));
+        document.querySelector('#newSizeText').value = '';
         return;
     }
 }
