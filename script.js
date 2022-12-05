@@ -11,6 +11,8 @@ const erasor = document.querySelector('#erasor');
 const colorDiv = document.querySelector('#colors');
 const erasorText = document.querySelector('#erasorText');
 const sizeRanger = document.querySelector('#squareRange'); 
+const opacityDiv = document.querySelector('#opacityDiv');
+const opacityRange = document.querySelector('#opacityRange');
 
 const rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 let paintColor = 'black';
@@ -30,6 +32,7 @@ rainbowButton.addEventListener('click', rainbowColor);
 opacityButton.addEventListener('click', opacityColor);
 erasor.addEventListener('click', erase);
 sizeRanger.addEventListener('click', changeRange);
+opacityRange.addEventListener('click', changeOpacityRange);
 colorChooser.forEach(element => element.addEventListener('click', changeColor));
 let squares;
 
@@ -51,6 +54,7 @@ function normalColor(){
     rainbowButton.removeAttribute('style');
     erasorText.style.visibility = 'hidden';
     colorDiv.style.visibility = 'visible';
+    opacityDiv.style.visibility = 'visible';
     black.click();
 
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
@@ -62,7 +66,7 @@ function normalColor(){
 
 function draw(){
     console.log("Drawing");
-    this.style.opacity = 1;
+    this.style.opacity = opacityRange.value;
     this.style.backgroundColor = paintColor;
     return;
 }
@@ -75,6 +79,7 @@ function rainbowColor(){
     normalButton.removeAttribute('style');
     colorDiv.style.visibility = 'hidden';
     erasorText.style.visibility = 'hidden';
+    opacityDiv.style.visibility = 'visible';
 
     squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.removeEventListener('mouseover', opacityDraw));
@@ -89,7 +94,7 @@ function drawRainbow(){
         console.log("Resetting rainbow color");
         rainbowIndex = 0;
     }
-    this.style.opacity = 1;
+    this.style.opacity = opacityRange.value;
     this.style.backgroundColor = rainbowColors[rainbowIndex];
     rainbowIndex++;
     return;
@@ -103,6 +108,7 @@ function opacityColor(){
     normalButton.removeAttribute('style');
     erasor.removeAttribute('style');
     colorDiv.style.visibility = 'visible';
+    opacityDiv.style.visibility = 'hidden';
     let black = document.querySelector('#black');
     black.click();
 
@@ -136,7 +142,14 @@ function eraseSquare(){
     this.style.backgroundColor = 'white';
 }
 
-// Code to read the range slider and change pad size
+
+function changeOpacityRange(){
+    let newOpacityRange = opacityRange.value;
+    console.log(newOpacityRange);
+    document.getElementById('opacityLevel').innerText = `Opacity: ${newOpacityRange}`;
+}
+
+// Code to read the range slider, opacity sliderand change pad size
 function changeRange(){
     let newSizeRange = sizeRanger.value;
     let val = '';
@@ -178,6 +191,7 @@ function changePadSize(){
     container.style.width = sketchPadSize + 'px';
     container.style.height = sketchPadSize + 'px';
     colorDiv.style.width = sketchPadSize + 'px';
+    opacityDiv.style.width = sketchPadSize + 'px';
     squares.forEach(element => element.remove());
     createDivs(16);  
     squares = document.querySelectorAll('.square');

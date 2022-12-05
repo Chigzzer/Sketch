@@ -85,9 +85,8 @@ body{
 #colors{
     width: 440px;
     display: flex;
-    gap: 2px;
     justify-content: space-between;
-    margin: 5px;
+    margin-bottom: 2px;
 
 }
 
@@ -104,4 +103,24 @@ body{
 
 #padSize{
     text-align: center;
+}
+
+#opacityDiv{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    border: 1px red solid;
+    width: 440px;
+}
+
+.opacityChoice{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex:2;
+}
+
+#opacityRange{
+    align-self: stretch;
 }
