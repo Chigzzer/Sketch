@@ -13,6 +13,7 @@ const erasorText = document.querySelector('#erasorText');
 const sizeRanger = document.querySelector('#squareRange'); 
 const opacityDiv = document.querySelector('#opacityDiv');
 const opacityRange = document.querySelector('#opacityRange');
+const title = document.querySelector('.title');
 
 const rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 let paintColor = 'black';
@@ -176,22 +177,28 @@ function changeRange(){
 
 function changePadSize(){
     const padSize = document.getElementById('padSize');
+    let fontSize;
     if (padSize.value == 'small'){
         console.log("Small pad");
         sketchPadSize = 300;
+        fontSize = 30;
     } 
     else if(padSize.value == 'medium'){
         console.log("Medium pad");
         sketchPadSize = 440;
+        fontSize = 40;
     }
     else{
         console.log ('Large pad');
         sketchPadSize = 580;
+        fontSize = 50;
     }
     container.style.width = sketchPadSize + 'px';
     container.style.height = sketchPadSize + 'px';
     colorDiv.style.width = sketchPadSize + 'px';
     opacityDiv.style.width = sketchPadSize + 'px';
+    title.style.width = sketchPadSize + 'px';
+    title.style.fontSize = fontSize + 'px';
     squares.forEach(element => element.remove());
     createDivs(16);  
     squares = document.querySelectorAll('.square');
@@ -280,7 +287,6 @@ function reset(){
     createDivs(16);
     squares = document.querySelectorAll('.square');
     // squares.forEach(element => element.addEventListener('mouseover', draw));
-    
     return normalColor(); 
 }
 
