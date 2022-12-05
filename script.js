@@ -57,7 +57,6 @@ function normalColor(){
     squares.forEach(element => element.removeEventListener('mouseover', opacityDraw));
     squares.forEach(element => element.removeEventListener('click', eraseSquare));
     squares.forEach(element => element.addEventListener('mouseover', draw));
-    squares.forEach(element => element.addEventListener('touchmove', draw));
     return;
 }
 
