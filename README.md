@@ -11,9 +11,12 @@ The ability to resize the pad to three different settings as well as change the 
 # What I Learnt
 * How to obtain readings from a range slider and convert that to display the readings on the webpage.
 * How to dynamically change a webpage via adding and removing divs. 
-* I understood the order of operation for JavaScript.
+* I understood why ordering the code inside Javascript file is important and can cause issues.
 * I learnt that bugs will always be present in code, even in the simplest of functions and that every small feature needs to be tested properly.
     * I had a bug in the reset function, that would break the functionality of the application if used in Rainbow mode.
 * How to remove event listeners and why removing them is useful. 
 * Understood the importance of branching for every new feature.
     * I produced a feature that didn't work and caused the application to fail. It took me a while to return to a functioning application. 
+* Introduced myself to the webkit extensions for css.
+    * Learnt how different browsers react differently. background-clip: works fine on Firefox but doesn't on Chrome.
+    * Had to use -webkit- for same functionality on Chrome. 
