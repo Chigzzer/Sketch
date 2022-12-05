@@ -21,10 +21,6 @@ let sketchPadSize = 440;
 container.style.width = sketchPadSize + 'px';
 container.style.height = sketchPadSize + 'px';
 
-// Creating the initial divisions 
-createDivs(16);
-let squares = document.querySelectorAll('.square');
-
 // Creating the initial event listeners for the buttons
 resetButton.addEventListener('click', reset);
 sizeSquare.addEventListener('click', changeSquareSize);
@@ -35,9 +31,18 @@ opacityButton.addEventListener('click', opacityColor);
 erasor.addEventListener('click', erase);
 sizeRanger.addEventListener('click', changeRange);
 colorChooser.forEach(element => element.addEventListener('click', changeColor));
-squares.forEach(element => element.addEventListener('mouseover', draw));
+let squares;
+
+start();
 
 // Functions for each part
+// Creating the initial divisions
+function start(){ 
+    createDivs(16);
+    squares = document.querySelectorAll('.square');
+    normalColor();
+}
+
 // Function that fills the the selected square with the chosen color onto the grid
 function normalColor(){
     erasor.removeAttribute('style');
@@ -46,11 +51,13 @@ function normalColor(){
     rainbowButton.removeAttribute('style');
     erasorText.style.visibility = 'hidden';
     colorDiv.style.visibility = 'visible';
+    black.click();
 
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.removeEventListener('mouseover', opacityDraw));
     squares.forEach(element => element.removeEventListener('click', eraseSquare));
     squares.forEach(element => element.addEventListener('mouseover', draw));
+    squares.forEach(element => element.addEventListener('touchmove', draw));
     return;
 }
 
@@ -97,6 +104,8 @@ function opacityColor(){
     normalButton.removeAttribute('style');
     erasor.removeAttribute('style');
     colorDiv.style.visibility = 'visible';
+    let black = document.querySelector('#black');
+    black.click();
 
     squares.forEach(element => element.removeEventListener('mouseover', draw));
     squares.forEach(element => element.removeEventListener('mouseover',drawRainbow));
