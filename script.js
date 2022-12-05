@@ -14,6 +14,7 @@ const sizeRanger = document.querySelector('#squareRange');
 const opacityDiv = document.querySelector('#opacityDiv');
 const opacityRange = document.querySelector('#opacityRange');
 const title = document.querySelector('.title');
+const buttons = document.querySelector('.buttons');
 
 const rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 let paintColor = 'black';
@@ -199,6 +200,7 @@ function changePadSize(){
     opacityDiv.style.width = sketchPadSize + 'px';
     title.style.width = sketchPadSize + 'px';
     title.style.fontSize = fontSize + 'px';
+    buttons.style.height = sketchPadSize + 'px';
     squares.forEach(element => element.remove());
     createDivs(16);  
     squares = document.querySelectorAll('.square');
