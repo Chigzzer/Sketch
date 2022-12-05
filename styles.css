@@ -109,8 +109,8 @@ body{
     display: flex;
     justify-content: center;
     gap: 16px;
-    border: 1px red solid;
     width: 440px;
+    margin-top: 2px;
 }
 
 .opacityChoice{
