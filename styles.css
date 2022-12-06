@@ -40,9 +40,8 @@ body{
 }
 
 .square{
-    background-color: white;
+    background-color: pink;
     flex: 1 0 auto;  
-     
 }
 
 .logo{

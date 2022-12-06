@@ -224,7 +224,7 @@ function createDivs(size){
         console.log(`Running ${size}`);
         const div = document.createElement('div');
         div.classList.add('square');
-        div.style.width = ((sketchPadSize/size) - (2 * border)) + 'px';
+        div.style.maxWidth = ((sketchPadSize/size) - (2 * border)) + 'px';
         div.style.height = ((sketchPadSize/size) - (2 * border)) + 'px';
         div.style.border = border + 'px black solid';
         container.appendChild(div);
