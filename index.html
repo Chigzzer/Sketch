@@ -9,31 +9,6 @@
 </head>
 <body>
     <div class="mainBody">
-        <div class="buttons">
-            <div id="erasorText">Please click on the squares you want to remove</div>
-            <button class="colorOption" id="normal" style="background-color: black; color: white">Colours</button> 
-            <button class="colorOption" id="rainbow">Rainbow</button> 
-            <button class="colorOption" id="opacity">Opacity </button> 
-            <button id="reset">Reset</button>
-            <button id="erasor">Erasor</button>
-            <div class="squareSizeWrapper">
-                <label for="squareRange">Grid Size</label>
-                <div id="gridSize">16 by 16</div>
-                <input type="range" value="2" min="0" max="5" step="1" name="squareRange" id="squareRange">
-                <input type="text" id="newSizeText" placeholder="Custom Value">
-                <button name="squareSize" class="drawSize">Change Size Of Grid</button>
-            </div> 
-            <div class="padSizeWrapper"> 
-                <label for="padSize">Change pad size</label>
-                <select id="padSize" name="padSize" class="padSize" autocomplete="off">
-                    <option value="small">Small</option>
-                    <option value="medium" selected="selected">Medium</option>
-                    <option value="large">Large</option>
-                </select>
-                <button id="padChange">Change Pad Size</button>
-            </div>
-
-        </div>
         <div class="wrapper">
             <div class="title">Digital Etch A Sketch</div>
             <div id="colors">
@@ -45,7 +20,36 @@
                 <button class="colorButton" value="yellow" id="yellow">Yellow</button> 
                 <button class="colorButton" value="pink" id="pink">Pink</button> 
             </div>
-            <div id="container"></div>
+            <div class="containerMid">
+                <div class="buttons">
+                    <div id="erasorText">Please click on the squares you want to remove</div>
+                    <button class="colorOption" id="normal" style="background-color: black; color: white">Colours</button> 
+                    <button class="colorOption" id="rainbow">Rainbow</button> 
+                    <button class="colorOption" id="opacity">Opacity </button> 
+                    <button id="reset">Reset</button>
+                    <button id="erasor">Erasor</button>
+                    <div class="squareSizeWrapper">
+                        <label for="squareRange">Grid Size</label>
+                        <div id="gridSize">16 by 16</div>
+                        <input type="range" value="2" min="0" max="5" step="1" name="squareRange" id="squareRange">
+                        <input type="text" id="newSizeText" placeholder="Custom Value">
+                        <button name="squareSize" class="drawSize">Change Size Of Grid</button>
+                    </div> 
+                    <div class="padSizeWrapper"> 
+                        <label for="padSize">Change pad size</label>
+                        <select id="padSize" name="padSize" class="padSize" autocomplete="off">
+                            <option value="small">Small</option>
+                            <option value="medium" selected="selected">Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                        <button id="padChange">Change Pad Size</button>
+                    </div>
+                </div>
+
+
+
+                <div id="container"></div>
+            </div>
             <div id="opacityDiv">
                 <label for="opacitySelector">Opacity Level</label>
                 <div class="opacityChoice">

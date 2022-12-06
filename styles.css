@@ -35,10 +35,14 @@ body{
     flex-wrap: wrap;
     border: 1px black solid;
     flex-direction: column;
+    flex: 0 0 auto;
+    border: 1px red solid;
 }
 
 .square{
-    background-color: white;   
+    background-color: white;
+    flex: 1 0 auto;  
+     
 }
 
 .logo{
@@ -59,6 +63,10 @@ body{
 .wrapper{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px red solid;
+    flex:1 1 auto;
 }
 
 .buttons{
@@ -73,6 +81,9 @@ body{
     border-radius: 10%;
 }
 
+.containerMid{
+    display: flex;
+}
 
 .padSizeWrapper{
     display: flex;
