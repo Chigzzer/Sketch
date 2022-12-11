@@ -132,8 +132,9 @@ function opacityDraw(){
 // Function for the erase section. Click on each square to erase the color from it.
 function erase(){
     rainbowButton.removeAttribute('style');
-    erasor.setAttribute('style', 'background-color: black; color: white; opacity: 1');
+    erasor.setAttribute('style', 'background-color: black; color: white');
     normalButton.removeAttribute('style');
+    opacityButton.removeAttribute('style');
     erasorText.style.visibility = 'visible';
     squares.forEach(element => element.removeEventListener('mouseover', drawRainbow));
     squares.forEach(element => element.removeEventListener('mouseover', draw));
@@ -143,6 +144,7 @@ function erase(){
 
 function eraseSquare(){
     this.style.backgroundColor = 'white';
+    this.style.opacity = '1';
 }
 
 
