@@ -20,6 +20,7 @@ const rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'vi
 let paintColor = 'black';
 let rainbowIndex = 0;
 let sketchPadSize = 440;
+let gridSize = 16;
 
 // Automatically sizing the container
 container.style.width = sketchPadSize + 'px';
@@ -151,7 +152,7 @@ function changeOpacityRange(){
     document.getElementById('opacityLevel').innerText = `Opacity: ${newOpacityRange}`;
 }
 
-// Code to read the range slider, opacity sliderand change pad size
+// Code to read the range slider, opacity slider and change pad size
 function changeRange(){
     let newSizeRange = sizeRanger.value;
     let val = '';
@@ -168,12 +169,13 @@ function changeRange(){
         val = 20;
     }
     else if (newSizeRange == 4){
-        val = 22;
-    }
-    else if (newSizeRange == 5){
         val = 24;
     }
+    else if (newSizeRange == 5){
+        val = 30;
+    }
     document.getElementById('gridSize').innerText = `${val} by ${val}`;
+    gridSize = val;
 }
 
 function changePadSize(){
@@ -202,7 +204,8 @@ function changePadSize(){
     title.style.fontSize = fontSize + 'px';
     buttons.style.height = sketchPadSize + 'px';
     squares.forEach(element => element.remove());
-    createDivs(16);  
+    console.log(gridSize);
+    createDivs(gridSize);  
     squares = document.querySelectorAll('.square');
     squares.forEach(element => element.addEventListener('mouseover', draw));
     return;
@@ -237,32 +240,25 @@ function changeSquareSize(){
     let newSize = 16;
     let newSizeRange = sizeRanger.value;
     console.log(`value: ${newSizeRange}`)
-    if (document.querySelector('#newSizeText').value ==''){
-        console.log('running range');
-        if (newSizeRange == 0){
-            newSize = 10;
-        }
-        else if (newSizeRange == 1){
-            newSize = 12;
-        }
-        else if (newSizeRange == 2){
-            newSize = 16;
-        }
-        else if (newSizeRange == 3){
-            newSize = 20;
-        }
-        else if (newSizeRange == 4){
-            newSize = 22;
-        }
-        else if (newSizeRange == 5){
-            newSize = 24;
-        }
+    console.log('running range');
+    if (newSizeRange == 0){
+        newSize = 10;
     }
-    else{
-        console.log('running text');
-        newSize = parseInt(document.querySelector('#newSizeText').value);
+    else if (newSizeRange == 1){
+        newSize = 12;
     }
-
+    else if (newSizeRange == 2){
+        newSize = 16;
+    }
+    else if (newSizeRange == 3){
+        newSize = 20;
+    }
+    else if (newSizeRange == 4){
+        newSize = 24;
+    }
+    else if (newSizeRange == 5){
+        newSize = 30;
+    }
     console.log(newSize);
     if (newSize > 100 || isNaN(newSize)){
         alert("Please select a number 1 and 100");
