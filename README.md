@@ -20,3 +20,4 @@ The ability to resize the pad to three different settings as well as change the 
 * Introduced myself to the webkit extensions for css.
     * Learnt how different browsers react differently. background-clip: works fine on Firefox but doesn't on Chrome.
     * Had to use -webkit- for same functionality on Chrome. 
+* Improved my understanding of flex
